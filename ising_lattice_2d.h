@@ -1,45 +1,29 @@
 #ifndef ISINGLATTICE2D_H
 #define ISINGLATTICE2D_H
 
-#include <iostream>
 #include <Eigen/Dense>
+#include <iostream>
 #include <random>
 
 #include "ising_spin.h"
 #include "numerics.h"
 
-enum class BoundaryCondition
-{
-  PERIODIC,
-  OPEN
-};
-
 // TODO: make it into class template -> square lattice with arbitrary spin
-class IsingLattice2d
-{
-public:
-  IsingLattice2d(int n1, int n2);
+class IsingLattice2d {
+   public:
+    IsingLattice2d(int n1, int n2) : n1(n1), n2(n2) { state.resize(n1, n2); }
 
-  void SetSpin(int i, int j, IsingSpin spin);
-  void SetSpin(int i, int j, int s);
-  IsingSpin GetSpin(int i, int j);
+    inline void SetValue(int i, int j, int value) { state(i, j).SetValue(value); }
+    inline int GetValue(int i, int j) const { return state(i, j).GetValue(); }
+    inline std::vector<int> GetShape() const { return std::move(std::vector<int>{n1, n2}); }
 
-  void SetConstSpin(IsingSpin spin);
-  void SetConstSpin(int s);
-  void SetRandomSpin();
+    void SetRandom();
 
-  void PlotState();
+    void PlotState();
 
-private:
-  int L1, L2;
-  Eigen::Array<IsingSpin, Eigen::Dynamic, Eigen::Dynamic> state;
-
-  std::mt19937 generator;
-  std::uniform_int_distribution<int> dis_int{0, 1};
-  std::uniform_real_distribution<Real> dis_float{0.0, 1.0};
-
-  Real get_random_float();
-  IsingSpin get_random_spin();
+   private:
+    int n1, n2;
+    Eigen::Array<IsingSpin, Eigen::Dynamic, Eigen::Dynamic> state;
 };
 
-#endif // ISINGLATTICE2D_H
+#endif  // ISINGLATTICE2D_H

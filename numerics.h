@@ -1,6 +1,6 @@
 #ifndef NUMERICS_H
 #define NUMERICS_H
 
-typedef double Real;
+using Real = double;
 
-#endif 
+#endif

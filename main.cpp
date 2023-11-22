@@ -1,16 +1,17 @@
+#include <Eigen/Dense>
 #include <iostream>
+#include <random>
+
 #include "ising_lattice_2d.h"
 
-using namespace std;
+int main() {
+    std::cout << "Hello sesami" << std::endl;
 
-int main()
-{
-  cout << "Hello sesami" << endl;
+    IsingLattice2d lattice = IsingLattice2d(10, 20);
+    lattice.SetRandom();
+    lattice.PlotState();
 
-  IsingLattice2d lattice = IsingLattice2d(10, 20);
-  lattice.SetRandomSpin();
+    std::cout << "done" << std::endl;
 
-  lattice.PlotState();
-
-  return 0;
+    return 0;
 }

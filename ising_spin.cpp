@@ -1,20 +1,18 @@
-#include <iostream>
-#include <cassert>
-
 #include "ising_spin.h"
 
-int SpinToS(IsingSpin spin)
-{
-  return static_cast<int>(spin);
-}
+#include <random>
 
-IsingSpin SToSpin(int s)
-{
-  assert(s == 1 || s == -1);
-  return static_cast<IsingSpin>(s);
-}
+#include "numerics.h"
 
-std::ostream &operator<<(std::ostream &os, IsingSpin spin)
-{
-  return (os << (spin == IsingSpin::UP ? "+" : "-"));
+std::mt19937 generator = []() {
+    std::mt19937 tmp;
+    tmp.seed(std::random_device()());
+    return tmp;
+}();
+
+std::uniform_int_distribution<int> dis_int{0, 1};
+std::uniform_real_distribution<Real> dis_float{0.0, 1.0};
+
+void IsingSpin::SetRandom() {
+    SetValue(2 * dis_int(generator) - 1);
 }

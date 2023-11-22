@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/main.dir/ising_spin.cpp.o CMakeFiles/main.dir/ising_lattice_2d.cpp.o CMakeFiles/main.dir/main.cpp.o -o main 
