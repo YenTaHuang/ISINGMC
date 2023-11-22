@@ -1,3 +1,0 @@
-/home/sesami/Projects/ISINGMC/build/CMakeFiles/main.dir
-/home/sesami/Projects/ISINGMC/build/CMakeFiles/edit_cache.dir
-/home/sesami/Projects/ISINGMC/build/CMakeFiles/rebuild_cache.dir
